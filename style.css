@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+    /* === Primary Colors === */
+    --clr-green-200: hsl(148, 38%, 91%);
+    --clr-green-600: hsl(169, 82%, 27%);
+    --clr-red: hsl(0, 66%, 54%);
+
+    /* === Neutral Colors === */
+    --clr-white: hsl(0, 0%, 100%);
+    --clr-grey-500: hsl(186, 15%, 59%);
+    --clr-grey-900: hsl(187, 24%, 22%);
+
+    /* === Typography === */
+    --font-size-label: 16px;
+
+    /* === Font Family === */
+    --font-family-main: "Karla", sans-serif;
+
+    /* === Font Weights === */
+    --fw-regular: 400;
+    --fw-bold: 700;
+}
+
+/* ===== RESET ELEMENTS ===== */
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+body {
+    font-family: var(--font-family-main);
+    background-color: var(--clr-green-200);
+}
+
+/* ===== FORM CONTAINER ===== */
+.form {
+    position: relative;
+    background-color: var(--clr-white);
+    padding: 35px;
+    border-radius: 12px;
+    margin: 20px auto;
+    width: 760px;
+}
+
+/* === form title === */
+.form__title {
+    color: var(--clr-grey-900);
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+
+/* === global styles === */
+.form__input-container {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+/* = error = */
+.form__input-container::before,
+.form__agreement::before {
+    content: attr(data-error);
+    color: var(--clr-red);
+    text-transform: capitalize;
+    position: absolute;
+    left: 0;
+    bottom: -35px;
+    display: none;
+}
+
+.error::before,
+.form__agreement.error::before {
+    display: block;
+}
+
+.form__input-container.error input,
+.form__input-container.error textarea {
+    border-color: var(--clr-red);
+}
+/* = end error = */
+
+.form__label {
+    color: var(--clr-grey-900);
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+
+.form__input {
+    border-radius: 5px;
+    border: 1px solid var(--clr-grey-500);
+    padding: 15px;
+    color: var(--clr-grey-900);
+    transition: border-color 0.3s;
+}
+
+
+.form__input:hover,
+.form__input:focus {
+    border-color: var(--clr-green-600);
+}
+
+/* === form name === */
+.form__name {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+/* === form query type === */
+.form__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.form__option {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--clr-grey-500);
+    padding: 15px;
+}
+
+.form__option:has([type="radio"]:checked) {
+    background-color: var(--clr-green-200);
+    border-color: var(--clr-green-600);
+}
+
+/* === form message === */
+.form__input--msg {
+    height: 90px;
+    resize: none;
+}
+
+/* === form agreement === */
+.form__agreement {
+    position: relative;
+}
+
+.form__agreement input {
+    accent-color: var(--clr-green-600);
+    margin-right: 10px;
+}
+
+.form__agreement::before {
+    content: attr(data-error);
+    color: var(--clr-red);
+    text-transform: capitalize;
+    position: absolute;
+    left: 0;
+    bottom: -35px;
+    display: none;
+}
+
+/* === form button === */
+.form__btn {
+    margin-top: 55px;
+    width: 100%;
+    padding-block: 15px;
+    background-color: var(--clr-green-600);
+    color: var(--clr-white);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form__btn:focus {
+    outline: 3px solid var(--clr-green-200);
+}
+
+.form__btn:hover {
+    background-color: hsl(169, 82%, 13%);
+}
+
+/* ===== SUCCESS MESSAGE ===== */
+.success-msg {
+    background-color: hsla(189, 24%, 22%, 0.829);
+    color: var(--clr-white);
+    padding: 30px;
+    border-radius: 10px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: capitalize;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%,-250px);
+    transition: transform 0.3s;
+}
+
+.success-msg.show-success-msg {
+    transform: translate(-50%, 0px);
+}
+
+.success-msg__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== MEDIA QUERY ===== */
+@media screen and (max-width: 991px) {
+    .form {
+        width: 90%;
+    }
+    .form__name,
+    .form__options {
+        flex-direction: column;
+    }
+    .form__option {
+        width: 100%;
+    }
+    .success-msg {
+        width: 90%;
+    }
+}
